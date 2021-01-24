@@ -4,38 +4,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>RM-PHONEBOOK</title>
+  <title>THE PHONEBOOK APP</title>
   <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i" />
   <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
   <link rel="stylesheet" href="/assets/css/smoothproducts.css" />
+  <link rel="stylesheet" href="/assets/css/view.css">
 </head>
 
 <body>
   <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
     <div class="container">
-      <a class="navbar-brand logo" href="/contact/view">THE PHONEBOOK APP</a>
+      <a class="navbar-brand logo mx-auto" href="/contact/view">THE PHONEBOOK APP</a>
     </div>
   </nav>
   <main class="page contact-us-page">
     <section class="clean-block clean-form dark">
       <div class="container">
         <div class="block-heading"></div>
-        <form action="/contact/view" method="GET"
-          class="row d-flex justify-content-center mb-4 p-3 pb-4 pt-4 bg-warning border-0">
+        <form id="form-main" action="/contact/view" method="GET"
+          class="row d-flex justify-content-center mb-4 p-3 pb-4 pt-4 bg-dark text-white border-0">
 
-          <div class="col-10"><input class="form-control" type="search" id="search" name="search"
-              placeholder="Search..." /></div>
-          <button class="btn btn-danger" type="submit" for="search">&nbsp;<i class="fa fa-search"></i></button>
+          <div class="col-10 input-group">
+            <input class="form-control" type="search" id="search" name="search" placeholder="Search..." />
+            <div class="input-group-btn">
+              <button class="justify-content-center" id="searchbtn" type="submit" for="search">&nbsp;<i
+                  class="fa fa-search"></i></button>
+            </div>
+          </div>
         </form>
-        <div class="card">
-          <div class="card-body">
+        <div id="card-main" class="card">
+          <div id="card-main" class="card-body bg-dark">
             <div class="row d-flex justify-content-center">
               <div class="col-7 text-justify">
                 <div id="accordian" class="mt-5">
                   {{#each contacts}}
-                  <div class="card">
+                  <div id="card-main" class="card border-0 mt-3 mb-4" style="background-color: #fce492;">
                     <div class="card-header" role="tab" id="{{this.user_id}}head">
                       <h3 class="mb-0"><a data-toggle="collapse" id="header"
                           data-target="#{{this.user_id}}">{{this.name}}</a></h3>
@@ -46,7 +51,7 @@
                           <a href="/contact/update/{{this.user_id}}" class="btn btn-primary border-0 float-right"
                             type="button" style="
                                     margin: 0px 2px;
-                                    background-color: rgb(9, 135, 14);
+                                    background-color: rgb(13, 106, 143);
                                   ">
                             Edit
                           </a>
@@ -102,8 +107,7 @@
           </div>
           <div class="row">
             <div class="col d-flex justify-content-end m-3">
-              <a href="/contact/create" style="color: antiquewhite;" class="btn btn-success" type="button">&nbsp;<i
-                  class="fa fa-plus"></i></a>
+              <a href="/contact/create" class="btn btn-primary" type="button">&nbsp;<i class="fa fa-plus"></i></a>
             </div>
           </div>
         </div>

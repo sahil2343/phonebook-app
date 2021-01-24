@@ -4,18 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>RM-PHONEBOOK</title>
+    <title>THE PHONEBOOK APP</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="/assets/css/smoothproducts.css">
     <link href="./../node_modules/html-form-validation/src/css/validator.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/create.css">
 
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="/contact/view">RM-PHONEBOOK</a>
+        <div class="container"><a class="navbar-brand logo mx-auto" href="/contact/view">THE PHONEBOOK APP</a>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"></li>
@@ -27,8 +28,8 @@
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading"></div>
-                <form action="/contact/create" method="POST">
-                    <h3>Add New Contact</h3>
+                <form id="form-main" class="bg-dark" action="/contact/create" method="POST">
+                    <h3 style="color: aliceblue;">Add New Contact</h3>
                     <div class="form-group"><label>Name</label><input class="form-control" type="text" name="name"
                             placeholder="Name"></div>
                     <div class="form-group"><label>Mobile Number</label><input class="form-control" type="text"
@@ -36,8 +37,8 @@
                     <div class="form-group"><label data-validation="required"
                             data-validation-type="email">Email</label><input class="form-control" type="email"
                             name="email" placeholder="abc@gmail.com"></div>
-                    <div class="form-group"><button class="btn btn-success btn-block" type="submit" disabled="disabled"
-                            id="submit">Save</button></div>
+                    <div class="form-group"><button style="background-color: #fce492;" class="btn btn-block"
+                            type="submit" disabled="disabled" id="submit">Save</button></div>
                 </form>
             </div>
         </section>
