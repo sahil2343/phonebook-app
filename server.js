@@ -1,38 +1,52 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const app = require("./app");
+const express = require("express"),
+  handlebars = require("express-handlebars"),
+  bodyParser = require("body-parser"),
+  logger = require("morgan"),
+  connectDB = require("./db");
+path = require("path");
+contact = require("./routes/contact");
+app = express();
 
-process.on("uncaughtException", (err) => {
-  console.log("UNCAUGHT EXCEPTION !!! Shutting down");
-  console.log(err.name, err.message);
-  process.exit(1);
-});
+//Connecting to the Database
+connectDB();
 
-dotenv.config({ path: "./config.env" });
+app.use(logger("dev"));
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
+//Setting views engine
+app.set("view engine", "hbs");
+app.engine(
+  "hbs",
+  handlebars({
+    extname: "hbs",
+    defaultLayout: null,
+  })
 );
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("DB connection successful"));
+app.use(express.static(path.resolve(__dirname, "public")));
 
-const port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//Added default and /contact route
+app.get("/", (req, res) => {
+  res.statusCode = 200;
+  res.redirect("/contact/view");
 });
 
-process.on("unhandledRejection", (err) => {
-  console.log("UNHANDLED REJECTION!! Shutting down...");
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  });
+app.use("/contact", contact);
+
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render("404");
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
