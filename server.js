@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 //Added default and /contact route
 app.get("/", (req, res) => {
   res.statusCode = 200;
-  res.redirect("/contact/view");
+  res.redirect("/contact/signup");
 });
 
 app.use("/contact", contact);
