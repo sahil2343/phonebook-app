@@ -2,15 +2,17 @@ const express = require("express"),
   handlebars = require("express-handlebars"),
   bodyParser = require("body-parser"),
   logger = require("morgan"),
-  connectDB = require("./db");
-path = require("path");
-contact = require("./routes/contact");
-app = express();
+  connectDB = require("./db"),
+  path = require("path"),
+  contact = require("./routes/contact"),
+  cookieParser = require("cookie-parser"),
+  app = express();
 
 //Connecting to the Database
 connectDB();
 
 app.use(logger("dev"));
+app.use(cookieParser());
 
 //Setting views engine
 app.set("view engine", "hbs");

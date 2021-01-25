@@ -42,13 +42,13 @@ router
 
       jwt.sign(payload, process.env.JWT_SECRET, (err, token) => {
         if (err) throw err;
-        // const cookieOptions = {
-        //   expires: new Date(
-        //     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-        //   ),
-        //   httpOnly: true,
-        // };
-        // res.cookie("token", token, cookieOptions);
+        const cookieOptions = {
+          expires: new Date(
+            Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+          ),
+          httpOnly: true,
+        };
+        res.cookie("token", token, cookieOptions);
         res.redirect("/contact/login");
       });
     } catch (err) {
