@@ -24,7 +24,7 @@ After the installation, run the server by using the following command. You shoul
 npm start
 ```
 
-Open up your browser and go to (http://localhost:3000/contact/view)
+Open up your browser and go to (http://localhost:3000/contact/signup)
 
 ## Deployment
 
